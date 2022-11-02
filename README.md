@@ -2,7 +2,7 @@ dtoch56.prepare_host role
 =========
 
 [![CI](https://github.com/dtoch56/ansible-role-prepare-host/workflows/CI/badge.svg?event=push)](https://github.com/dtoch56/ansible-role-prepare-host/actions?query=workflow%3ACI)
-
+[![Release](https://github.com/dtoch56/ansible-role-prepare-host/workflows/Release/badge.svg?event=push)](https://github.com/dtoch56/ansible-role-prepare-host/actions?query=workflow%3ARelease)
 
 Prepare host timezone, locales and other initial stuff.
 
@@ -29,10 +29,11 @@ None.
 
 Example Playbook
 ----------------
-
-    - hosts: servers
-      roles:
-        - { role: dtoch56.prepare_host }
+```yaml
+- hosts: servers
+  roles:
+    - { role: dtoch56.prepare_host }
+```
 
 License
 -------
@@ -46,6 +47,8 @@ This role was created in 2021 by dtoch56.
 
 Development
 ------------------
-
-    pip install pipenv
-    pipenv install
+```bash
+pip install pipenv
+pipenv install
+ansible-playbook main.yml --ask-become-pass
+```
