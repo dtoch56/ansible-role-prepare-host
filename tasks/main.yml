@@ -1,10 +1,9 @@
 ---
 - name: Install prerequisites
-  ansible.builtin.apt:
+  ansible.builtin.package:
     name:
       - tzdata
       - locales
-    update_cache: yes
     state: latest
 
 - name: "Set timezone {{ prepare_host_timezone }}"
