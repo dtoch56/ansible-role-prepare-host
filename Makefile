@@ -16,7 +16,7 @@ venv:
 	source venv/bin/activate
 
 run:
-	ansible-playbook main.yml
+	ansible-playbook main.yml --ask-become-pass
 
 update:
 	python -m ensurepip --upgrade
