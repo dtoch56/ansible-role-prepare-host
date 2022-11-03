@@ -1,21 +1,19 @@
 ---
-# This is an example playbook to execute Ansible tests.
-
 - name: Verify
   hosts: all
 
   vars:
-     host_timezone: "{{ lookup('file','/etc/timezone') }}"
+    host_timezone: "{{ lookup('file','/etc/timezone') }}"
 
   tasks:
-  - name: Test LANG env
-    ansible.builtin.assert:
-      that: prepare_host_locale === ansible_env.LANG
+    - name: Test LANG env
+      ansible.builtin.assert:
+        that: prepare_host_locale === ansible_env.LANG
 
-  - name: Test LANGUAGE env
-    ansible.builtin.assert:
-      that: prepare_host_language === ansible_env.LANGUAGE
+    - name: Test LANGUAGE env
+      ansible.builtin.assert:
+        that: prepare_host_language === ansible_env.LANGUAGE
 
-  - name: Test host timezone
-    ansible.builtin.assert:
-      that: prepare_host_timezone === host_timezone
+    - name: Test host timezone
+      ansible.builtin.assert:
+        that: prepare_host_timezone === host_timezone

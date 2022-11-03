@@ -1,4 +1,4 @@
-.PHONY: help venv run update
+.PHONY: help venv run update lint
 
 help:
 	@echo ''
@@ -6,7 +6,8 @@ help:
 	@echo 'Targets:'
 	@echo '  venv    Create virtual environment for application'
 	@echo '  run     Run main playbook'
-	@echo '  update  Update python dependencies and ansible roles'
+	@echo '  update  Update python dependencies'
+	@echo '  lint    Run yamllint'
 	@echo ''
 
 
@@ -21,3 +22,6 @@ update:
 	python -m ensurepip --upgrade
 	pip3 install pipenv
 	pipenv update
+
+lint:
+	yamllint .
