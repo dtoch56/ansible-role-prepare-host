@@ -10,8 +10,10 @@
   ansible.builtin.package:
     name:
       - tzdata
-      - locales
     state: latest
+
+- ansible.builtin.include_tasks: prerequisites-Debian.yml
+  when: ansible_os_family == 'Debian'
 
 - name: "Set timezone {{ prepare_host_timezone }}"
   community.general.timezone:
@@ -31,9 +33,6 @@
   ansible.builtin.command: localectl status
   register: locale_status
   changed_when: false
-
-- debug:
-    var: locale_status
 
 - name: Parse 'LANG' from current locale and language configuration
   ansible.builtin.set_fact:
