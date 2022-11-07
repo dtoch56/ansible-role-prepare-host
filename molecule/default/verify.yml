@@ -8,12 +8,12 @@
   tasks:
     - name: Test LANG env
       ansible.builtin.assert:
-        that: prepare_host_locale === ansible_env.LANG
+        that: prepare_host_locale == ansible_env.LANG
 
     - name: Test LANGUAGE env
       ansible.builtin.assert:
-        that: prepare_host_language === ansible_env.LANGUAGE
+        that: prepare_host_language == ansible_env.LANGUAGE
 
     - name: Test host timezone
       ansible.builtin.assert:
-        that: prepare_host_timezone === host_timezone
+        that: prepare_host_timezone == host_timezone

@@ -40,14 +40,17 @@ jobs:
     strategy:
       matrix:
         distro:
-#          - centos8
-#          - centos7
-          - ubuntu2204
-          - ubuntu2004
+          - centos7
+          - centos8
           - ubuntu1804
-#          - debian11
-#          - debian10
-#          - fedora34
+          - ubuntu2004
+          - ubuntu2204
+          - debian10
+          - debian11
+          - fedora35
+          - fedora36
+          - rockylinux9
+          - amazonlinux2
 
     steps:
       - name: Check out the codebase.
