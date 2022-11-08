@@ -25,3 +25,4 @@ update:
 
 lint:
 	yamllint .
+	ansible-lint
