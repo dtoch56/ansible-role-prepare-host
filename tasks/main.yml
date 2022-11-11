@@ -12,10 +12,12 @@
       - tzdata
     state: latest
 
-- ansible.builtin.include_tasks: prerequisites-Debian.yml
+- name: Prerequisites Debian
+  ansible.builtin.include_tasks: prerequisites-Debian.yml
   when: ansible_os_family == 'Debian'
 
-- ansible.builtin.include_tasks: prerequisites-Rocky.yml
+- name: Prerequisites Rocky
+  ansible.builtin.include_tasks: prerequisites-Rocky.yml
   when: ansible_distribution == 'Rocky'
 
 - name: "Set timezone {{ prepare_host_timezone }}"
@@ -36,6 +38,7 @@
   ansible.builtin.command: localectl status
   register: locale_status
   changed_when: false
+  failed_when: locale_status.rc != 0 and "System has not been booted with systemd as init system" not in locale_status.stderr
 
 - name: Parse 'LANG' from current locale and language configuration
   ansible.builtin.set_fact:
@@ -48,3 +51,4 @@
 - name: "Configure locale to {{ prepare_host_locale }} and language to {{ prepare_host_language }}"
   ansible.builtin.command: localectl set-locale LANG={{ prepare_host_locale }} LANGUAGE={{ prepare_host_language }}
   changed_when: locale_lang != prepare_host_locale or locale_language != prepare_host_language
+  failed_when: locale_status.rc != 0 and "System has not been booted with systemd as init system" not in locale_status.stderr
