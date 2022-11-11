@@ -1,11 +1,10 @@
 ---
-- name: Prerequisites Debian
-  ansible.builtin.include_tasks: prerequisites-Debian.yml
-  when: ansible_os_family == 'Debian'
-
-- name: Prerequisites Rocky
-  ansible.builtin.include_tasks: prerequisites-Rocky.yml
-  when: ansible_distribution == 'Rocky'
+- name: Install prerequisites
+  ansible.builtin.package:
+    name:
+      - locales
+    state: latest
+  when: ansible_os_family == 'Debian' or ansible_distribution == 'Rocky' or ansible_distribution == 'Fedora'
 
 - name: "Ensure localisation files for {{ prepare_host_locale }} are available"
   community.general.locale_gen:

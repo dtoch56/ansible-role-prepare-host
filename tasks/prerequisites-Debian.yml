@@ -1,6 +1,0 @@
----
-- name: Install prerequisites
-  ansible.builtin.package:
-    name:
-      - locales
-    state: latest
