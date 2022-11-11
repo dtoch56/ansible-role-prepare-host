@@ -1,13 +1,7 @@
 ---
-- name: Update apt repositories
-  ansible.builtin.apt:
-    update_cache: true
-    force_apt_get: true
-    cache_valid_time: 86400
-  when: ansible_os_family == 'Debian'
-
 - name: Setup locales
-  ansible.builtin.include_tasks: locale.yml
+  ansible.builtin.include_tasks: locale-Debian.yml
+  when: ansible_os_family == 'Debian'
 
 - name: Setup NTP
   ansible.builtin.include_tasks: ntp.yml
