@@ -19,7 +19,7 @@
   ansible.builtin.command: localectl status
   register: locale_status
   changed_when: false
-  failed_when: locale_status.rc != 0 and "System has not been booted with systemd as init system" not in locale_status.stderr
+  failed_when: locale_status.rc != 0 and "Failed to create bus connection" not in locale_status.stderr
 
 - name: Parse 'LANG' from current locale and language configuration
   ansible.builtin.set_fact:
