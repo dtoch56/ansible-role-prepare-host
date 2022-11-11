@@ -4,6 +4,8 @@
 
   vars:
     host_timezone: "{{ lookup('file','/etc/timezone') }}"
+  vars_files:
+    - ../../defaults/main.uml
 
   tasks:
     - name: Test locales
