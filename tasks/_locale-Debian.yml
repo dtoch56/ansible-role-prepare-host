@@ -25,10 +25,6 @@
   ansible.builtin.command: localectl status
   register: locale_status
   changed_when: false
-  failed_when:
-    - locale_status.rc != 0 and "Failed to create bus connection" not in locale_status.stderr
-    - locale_status.rc != 0 and "No such file or directory" not in locale_status.stderr
-    - locale_status.rc != 0 and "Failed to connect to bus" not in locale_status.stderr
 
 - name: Parse 'LANG' from current locale and language configuration
   ansible.builtin.set_fact:
@@ -41,7 +37,3 @@
 - name: "Configure locale to {{ prepare_host_locale }} and language to {{ prepare_host_language }}"
   ansible.builtin.command: localectl set-locale LANG={{ prepare_host_locale }} LANGUAGE={{ prepare_host_language }}
   changed_when: locale_lang != prepare_host_locale or locale_language != prepare_host_language
-  failed_when:
-    - locale_status.rc != 0 and "Failed to create bus connection" not in locale_status.stderr
-    - locale_status.rc != 0 and "No such file or directory" not in locale_status.stderr
-    - locale_status.rc != 0 and "Failed to connect to bus" not in locale_status.stderr

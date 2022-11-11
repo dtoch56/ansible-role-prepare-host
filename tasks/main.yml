@@ -1,7 +1,6 @@
 ---
-- name: Setup locales
-  ansible.builtin.include_tasks: locale-Debian.yml
-  when: ansible_os_family == 'Debian'
+- name: Setup locale
+  ansible.builtin.include_tasks: locale.yml
 
 - name: Setup NTP
   ansible.builtin.include_tasks: ntp.yml
