@@ -49,8 +49,6 @@ jobs:
           - debian11
           - fedora35
           - fedora36
-          - rockylinux9
-          - amazonlinux2
 
     steps:
       - name: Check out the codebase.
