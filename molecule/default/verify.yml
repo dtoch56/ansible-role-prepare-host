@@ -8,6 +8,9 @@
     - ../../defaults/main.yml
 
   tasks:
+    - name: Debug
+      ansible.builtin.debug:
+        var: ansible_env
     - name: Test locales
       when: ansible_distribution == "Debian"
       block:
