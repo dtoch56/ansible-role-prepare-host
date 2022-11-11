@@ -4,6 +4,13 @@
   run_once: true
   delegate_to: localhost
 
+- name: Update apt repositories
+  ansible.builtin.apt:
+    update_cache: true
+    force_apt_get: true
+    cache_valid_time: 86400
+  when: ansible_pkg_mgr == 'apt'
+
 - name: Install requirements
   ansible.builtin.package:
     name: "{{ locale_requirements }}"
