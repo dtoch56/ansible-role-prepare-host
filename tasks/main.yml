@@ -15,6 +15,9 @@
 - ansible.builtin.include_tasks: prerequisites-Debian.yml
   when: ansible_os_family == 'Debian'
 
+- ansible.builtin.include_tasks: prerequisites-Rocky.yml
+  when: ansible_distribution == 'Rocky'
+
 - name: "Set timezone {{ prepare_host_timezone }}"
   community.general.timezone:
     name: "{{ prepare_host_timezone }}"
