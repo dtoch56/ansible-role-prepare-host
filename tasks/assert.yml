@@ -111,9 +111,9 @@
       - locale_lc_time is string
     quiet: true
 
-- name: Test if locale_timezone is set correctly
+- name: Test if ntp_timezone is set correctly
   ansible.builtin.assert:
     that:
-      - locale_timezone is defined
-      - locale_timezone is string
+      - ntp_timezone is defined
+      - ntp_timezone is string
     quiet: true
