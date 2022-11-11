@@ -8,20 +8,6 @@
     - ../../defaults/main.yml
 
   tasks:
-    - name: Debug
-      ansible.builtin.debug:
-        var: ansible_env
-    - name: Test locales
-      when: ansible_distribution == "Debian"
-      block:
-        - name: Test LANG env
-          ansible.builtin.assert:
-            that: locale_lang == ansible_env.LANG
-
-        - name: Test LANGUAGE env
-          ansible.builtin.assert:
-            that: locale_language == ansible_env.LANGUAGE
-
     - name: Test host timezone
       ansible.builtin.assert:
         that: ntp_timezone == host_timezone
