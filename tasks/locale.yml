@@ -1,21 +1,11 @@
 ---
-- name: Update apt repositories
-  ansible.builtin.apt:
-    update_cache: true
-    force_apt_get: true
-    cache_valid_time: 86400
+- name: Prerequisites Debian
+  ansible.builtin.include_tasks: prerequisites-Debian.yml
   when: ansible_os_family == 'Debian'
 
-- name: Setup locales
-  ansible.builtin.include_tasks: locale.yml
-
-- name: Setup NTP
-  ansible.builtin.include_tasks: ntp.yml
-
-
-- name: "Set timezone {{ prepare_host_timezone }}"
-  community.general.timezone:
-    name: "{{ prepare_host_timezone }}"
+- name: Prerequisites Rocky
+  ansible.builtin.include_tasks: prerequisites-Rocky.yml
+  when: ansible_distribution == 'Rocky'
 
 - name: "Ensure localisation files for {{ prepare_host_locale }} are available"
   community.general.locale_gen:
