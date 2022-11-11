@@ -6,13 +6,16 @@
     host_timezone: "{{ lookup('file','/etc/timezone') }}"
 
   tasks:
-    - name: Test LANG env
-      ansible.builtin.assert:
-        that: prepare_host_locale == ansible_env.LANG
+    - name: Test locales
+      when: ansible_distribution == "Debian"
+      block:
+      - name: Test LANG env
+        ansible.builtin.assert:
+          that: prepare_host_locale == ansible_env.LANG
 
-    - name: Test LANGUAGE env
-      ansible.builtin.assert:
-        that: prepare_host_language == ansible_env.LANGUAGE
+      - name: Test LANGUAGE env
+        ansible.builtin.assert:
+          that: prepare_host_language == ansible_env.LANGUAGE
 
     - name: Test host timezone
       ansible.builtin.assert:
