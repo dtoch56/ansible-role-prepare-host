@@ -4,6 +4,7 @@
     name:
       - locales
     state: latest
+  when: ansible_distribution !== 'Amazon'
 
 - name: "Ensure localisation files for {{ prepare_host_locale }} are available"
   community.general.locale_gen:
